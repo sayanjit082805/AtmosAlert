@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import SearchBar from "./Search";
 import { ToastContainer, toast } from "react-toastify";
+import { ProgressBar } from "react-loader-spinner";
 import "react-toastify/dist/ReactToastify.css";
 import cloudy from "../assets/cloudy.svg";
 import sun from "../assets/sun.svg";
@@ -16,8 +17,10 @@ const apiKey = import.meta.env.VITE_API_KEY;
 function Weather() {
   const [search, setSearch] = useState("");
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   async function getData(search) {
+    setLoading(true);
     if (search === "") {
       toast.error("Please enter a city name!", {
         icon: true,
@@ -45,6 +48,7 @@ function Weather() {
         });
         return;
       }
+      setLoading(false);
       setData(data);
     } catch (error) {
       console.log(error);
@@ -93,23 +97,41 @@ function Weather() {
         setSearch={setSearch}
         handleSearch={handleSearch}
       />
-      <img src={getIcon(data)} className="h-64 w-64 mt-3" alt="Image" />
-      <div className="flex flex-col items-center p-8 rounded-md w-600 sm:px-12 text-gray-800">
-        <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-50 px-3">
-            {data?.name}, <span>{data?.sys.country}</span>
-          </h1>
-          <p className="text-2xl text-gray-600 px-3 py-3 mb-3">{getDate()}</p>
-        </div>
-        <div className="mb-2 text-3xl font-semibold text-gray-50">
-          {Math.round(data?.main?.temp) + "°C"}
-          <span className="mx-1 font-normal"> / </span>{" "}
-          {Math.round((data?.main?.temp * 9) / 5) + 32 + "°F"}
-        </div>
-        <p className="text-gray-600 text-center text-2xl capitalize">
-          {data?.weather[0].description}
-        </p>
-      </div>
+      {loading ? (
+        <ProgressBar
+          className="mt-6"
+          visible={true}
+          height="80"
+          width="80"
+          barColor="#F8FAFC"
+          borderColor="#F8FAFC"
+          ariaLabel="progress-bar-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+        />
+      ) : (
+        <>
+          <img src={getIcon(data)} className="h-64 w-64 mt-3" alt="Image" />
+          <div className="flex flex-col items-center p-8 rounded-md w-600 sm:px-12 text-gray-800">
+            <div className="text-center">
+              <h1 className="text-4xl font-bold text-gray-50 px-3">
+                {data?.name}, <span>{data?.sys.country}</span>
+              </h1>
+              <p className="text-2xl text-gray-600 px-3 py-3 mb-3">
+                {getDate()}
+              </p>
+            </div>
+            <div className="mb-2 text-3xl font-semibold text-gray-50">
+              {Math.round(data?.main?.temp) + "°C"}
+              <span className="mx-1 font-normal"> / </span>{" "}
+              {Math.round((data?.main?.temp * 9) / 5) + 32 + "°F"}
+            </div>
+            <p className="text-gray-600 text-center text-2xl capitalize">
+              {data?.weather[0].description}
+            </p>
+          </div>
+        </>
+      )}
       <ToastContainer
         position="top-right"
         autoClose={4000}
