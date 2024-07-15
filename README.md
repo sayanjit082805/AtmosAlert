@@ -11,6 +11,7 @@ AtmosAlert is a simple web-based application which provides provides weather det
 * Fully animated icons using [Meteocons](https://bas.dev/work/meteocons).
 * Again, a rather minimalist UI.
 * Toast notifications using [react-toastify](https://fkhadra.github.io/react-toastify/introduction/).
+* Small loading animations using [React Spinners](https://mhnpd.github.io/react-loader-spinner/).
 
 
 # Showcase
