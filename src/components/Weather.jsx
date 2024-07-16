@@ -6,10 +6,12 @@ import "react-toastify/dist/ReactToastify.css";
 import cloudy from "../assets/cloudy.svg";
 import sun from "../assets/sun.svg";
 import rain from "../assets/rain.svg";
+import moon from "../assets/moon.svg";
 import thunderstorms from "../assets/thunderstorms.svg";
 import snow from "../assets/snow.svg";
 import haze from "../assets/haze.svg";
 import fog from "../assets/fog.svg";
+import mist from "../assets/mist.svg";
 
 let DateTime = luxon.DateTime;
 const apiKey = import.meta.env.VITE_API_KEY;
@@ -70,7 +72,12 @@ function Weather() {
   function getIcon(data) {
     let weatherIcon = null;
     if (data?.weather[0].main === "Clear") {
-      weatherIcon = sun;
+      if (data?.weather[0].icon === "01n") {
+        weatherIcon = moon;
+      }
+      if (data?.weather[0].icon === "01d") {
+        weatherIcon = sun;
+      }
     } else if (
       data?.weather[0].main === "Rain" ||
       data?.weather[0].main === "Drizzle"
@@ -84,6 +91,8 @@ function Weather() {
       weatherIcon = haze;
     } else if (data?.weather[0].main === "Fog") {
       weatherIcon = fog;
+    } else if (data?.weather[0].main === "Mist") {
+      weatherIcon = mist;
     } else {
       weatherIcon = cloudy;
     }
@@ -147,3 +156,4 @@ function Weather() {
 }
 
 export default Weather;
+
