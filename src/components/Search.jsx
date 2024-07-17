@@ -1,4 +1,9 @@
-export default function SearchBar({ search, setSearch, handleSearch }) {
+export default function SearchBar({
+  search,
+  setSearch,
+  handleSearch,
+  handleKeyPress,
+}) {
   return (
     <div className="w-[350px] items-center">
       <div className="relative flex items-center w-full h-12 rounded-lg focus-within:shadow-lg bg-slate-100 overflow-hidden">
@@ -27,6 +32,7 @@ export default function SearchBar({ search, setSearch, handleSearch }) {
             placeholder="Enter city name"
             value={search}
             onChange={(event) => setSearch(event.target.value)}
+            onKeyDown={handleKeyPress.bind()}
           />
           <button
             className="text-slate-100 bg-slate-700 px-6 font-bold rounded-r-md h-12 hover:bg-slate-600"

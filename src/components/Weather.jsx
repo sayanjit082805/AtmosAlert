@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import SearchBar from "./Search";
+import Error from "./Error";
 import { ToastContainer, toast } from "react-toastify";
 import { ProgressBar } from "react-loader-spinner";
 import "react-toastify/dist/ReactToastify.css";
@@ -20,6 +21,7 @@ function Weather() {
   const [search, setSearch] = useState("");
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   async function getData(search) {
     setLoading(true);
@@ -48,9 +50,12 @@ function Weather() {
           },
           closeOnClick: true,
         });
+        setLoading(false);
+        setError(true);
         return;
       }
       setLoading(false);
+      setError(false);
       setData(data);
     } catch (error) {
       console.log(error);
@@ -63,6 +68,12 @@ function Weather() {
 
   function handleSearch() {
     getData(search);
+  }
+
+  function handleKeyPress(e) {
+    if (e.key === "Enter") {
+      getData(search);
+    }
   }
 
   function getDate() {
@@ -105,6 +116,7 @@ function Weather() {
         search={search}
         setSearch={setSearch}
         handleSearch={handleSearch}
+        handleKeyPress={handleKeyPress}
       />
       {loading ? (
         <ProgressBar
@@ -118,6 +130,8 @@ function Weather() {
           wrapperStyle={{}}
           wrapperClass=""
         />
+      ) : error ? (
+        <Error />
       ) : (
         <>
           <img src={getIcon(data)} className="h-64 w-64 mt-3" alt="Image" />
@@ -156,4 +170,3 @@ function Weather() {
 }
 
 export default Weather;
-
