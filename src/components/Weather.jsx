@@ -41,7 +41,7 @@ function Weather() {
       );
       const data = await response.json();
       if (!response.ok) {
-        toast.error("City not found!", {
+        toast.error(`${search} was not found`, {
           position: "top-right",
           draggable: false,
           style: {
