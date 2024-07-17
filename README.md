@@ -28,7 +28,7 @@ AtmosAlert is a simple web-based application which provides provides weather det
 
 ![](https://raw.githubusercontent.com/sayanjit082805/AtmosAlert/main/demo/ss2.png)
 
-* Toast notifications
+* Toast notifications and error display
 
 ![](https://raw.githubusercontent.com/sayanjit082805/AtmosAlert/main/demo/ss1.png)
 
