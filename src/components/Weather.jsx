@@ -24,7 +24,6 @@ function Weather() {
   const [error, setError] = useState(false);
 
   async function getData(search) {
-    setLoading(true);
     if (search === "") {
       toast.error("Please enter a city name!", {
         icon: true,
@@ -35,6 +34,7 @@ function Weather() {
       });
       return;
     }
+    setLoading(true);
     try {
       const response = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${search}&units=metric&appid=${apiKey}`
