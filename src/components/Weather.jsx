@@ -67,6 +67,7 @@ function Weather() {
       }
 
       setLoading(false);
+      setError(false);
       setData(data);
     } catch (error) {
       console.log(error);
