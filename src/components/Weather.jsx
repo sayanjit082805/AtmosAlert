@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import SearchBar from "./Search";
-import Error from "./Error";
+import CityError from "./CityError";
+import KeyError from "./KeyError";
 import { ToastContainer, toast } from "react-toastify";
 import { ProgressBar } from "react-loader-spinner";
 import "react-toastify/dist/ReactToastify.css";
@@ -22,6 +23,7 @@ function Weather() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [keyError, setKeyError] = useState(false);
 
   async function getData(search) {
     if (search === "") {
@@ -41,21 +43,30 @@ function Weather() {
       );
       const data = await response.json();
       if (!response.ok) {
-        toast.error(`${search} was not found`, {
-          position: "top-right",
-          draggable: false,
-          style: {
-            background: "#475569",
-            color: "#f8fafc",
-          },
-          closeOnClick: true,
-        });
+        console.log(response);
+        if (response.status === 404) {
+          toast.error(`${search} was not found!`, {
+            position: "top-right",
+            draggable: false,
+            style: {
+              background: "#475569",
+              color: "#f8fafc",
+            },
+            closeOnClick: true,
+          });
+          setLoading(false);
+          setError(true);
+          return;
+        }
+      }
+      if (response.status === 401) {
         setLoading(false);
+        setKeyError(true);
         setError(true);
         return;
       }
+
       setLoading(false);
-      setError(false);
       setData(data);
     } catch (error) {
       console.log(error);
@@ -77,7 +88,7 @@ function Weather() {
   }
 
   function getDate() {
-    return DateTime.now().setLocale("en-us").toLocaleString(DateTime.DATE_FULL);
+    return DateTime.now().setLocale("en-us").toLocaleString(DateTime.DATE_MED);
   }
 
   function getIcon(data) {
@@ -131,7 +142,11 @@ function Weather() {
           wrapperClass=""
         />
       ) : error ? (
-        <Error />
+        keyError ? (
+          <KeyError />
+        ) : (
+          <CityError />
+        )
       ) : (
         <>
           <img src={getIcon(data)} className="h-64 w-64 mt-3" alt="Image" />

@@ -1,6 +1,6 @@
 import compass from "../assets/compass.svg";
 
-function Error() {
+function CityError() {
   return (
     <>
       <img src={compass} className="h-64 w-64 mt-3" alt="Image" />
@@ -19,4 +19,4 @@ function Error() {
   );
 }
 
-export default Error;
+export default CityError;
