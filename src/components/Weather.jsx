@@ -131,7 +131,7 @@ function Weather() {
           wrapperClass=""
         />
       ) : error ? (
-        <Error search={search} />
+        <Error />
       ) : (
         <>
           <img src={getIcon(data)} className="h-64 w-64 mt-3" alt="Image" />

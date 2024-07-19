@@ -1,6 +1,6 @@
 import compass from "../assets/compass.svg";
 
-function Error({ search }) {
+function Error() {
   return (
     <>
       <img src={compass} className="h-64 w-64 mt-3" alt="Image" />
@@ -10,7 +10,7 @@ function Error({ search }) {
             No city found!
           </h1>
           <p className="text-2xl text-gray-600 pt-3 py-3">
-            We searched high and low, <br /> but {search} was nowhere to be
+            We searched high and low, <br /> but this citywas nowhere to be
             found!
           </p>
         </div>
