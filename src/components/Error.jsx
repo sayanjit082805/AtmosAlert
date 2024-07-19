@@ -10,7 +10,7 @@ function Error() {
             No city found!
           </h1>
           <p className="text-2xl text-gray-600 pt-3 py-3">
-            We searched high and low, <br /> but this citywas nowhere to be
+            We searched high and low, <br /> but this city was nowhere to be
             found!
           </p>
         </div>
