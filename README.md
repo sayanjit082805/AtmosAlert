@@ -1,6 +1,6 @@
 # AtmosAlert
 
-AtmosAlert is a simple web-based application which provides provides weather details for any city. Built using Vite+React and styled using Tailwind Css.
+AtmosAlert is a simple web-based application which provides weather details for any city. Built using Vite+React and styled using Tailwind Css.
 
 ![JavaScript](https://img.shields.io/badge/javascript-1E293B.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![React](https://img.shields.io/badge/react-374151.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
