@@ -5,7 +5,7 @@ AtmosAlert is a simple web-based application which provides provides weather det
 ![JavaScript](https://img.shields.io/badge/javascript-1E293B.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![React](https://img.shields.io/badge/react-374151.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![TailwindCSS](https://img.shields.io/badge/Tailwind-CBD5E1.svg?style=for-the-badge&logo=tailwind-css&logoColor=38bdf8)
-![Vite](<https://img.shields.io/badge/Vite-9333EA.svg?style=for-the-badge&![License](https://img.shields.io/badge/style=for-the-badge&logo=License-MIT-blue.svg)logo=vite&logoColor=fff>)
+![Vite](https://img.shields.io/badge/Vite-9333EA.svg?style=for-the-badge&logo=vite&logoColor=fff)
 
 # Features
 
